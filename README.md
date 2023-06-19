@@ -15,7 +15,7 @@ git clone -b v5.13.1 https://github.com/munzoorf95/rtl8812bu-Kali-Linux.git
 cd rtl8812bu-Kali-Linux
 
 
-VER=$(sed -n 's/\PACKAGE_VERSION="\(.*\)"/\1/p' dkms.conf)
+VER=$(sed -n 's/\PACKAGE_VERSION="\\(.*\\)"/\1/p' dkms.conf)
 
 rsync -rvhP ./ /usr/src/rtl88x2bu-${VER}
 
