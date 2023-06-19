@@ -1,3 +1,37 @@
+# Easy Installation
+
+sudo su
+
+apt update
+apt upgrade
+
+apt-get update
+apt-get upgrade
+
+apt install -y linux-headers-$(uname -r) build-essential bc dkms git libelf-dev rfkill iw
+
+git clone -b v5.13.1 https://github.com/munzoorf95/rtl8812bu-Kali-Linux.git
+
+cd rtl8812bu-Kali-Linux
+
+
+VER=$(sed -n 's/\PACKAGE_VERSION="\(.*\)"/\1/p' dkms.conf)
+
+rsync -rvhP ./ /usr/src/rtl88x2bu-${VER}
+
+dkms add -m rtl88x2bu -v ${VER}
+
+dkms build -m rtl88x2bu -v ${VER}
+
+dkms install -m rtl88x2bu -v ${VER}
+
+modprobe 88x2bu
+
+systemctl reboot -i
+
+
+
+
 # Realtek RTL8812BU Driver for Linux
 
 [![Build Status](https://github.com/fastoe/RTL8812BU/actions/workflows/rtl8812bu.yml/badge.svg)](https://github.com/fastoe/RTL8812BU/actions)
